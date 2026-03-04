@@ -6,13 +6,13 @@
     <meta name="description" content="A weekly digest of happy links to make you smile and feel good">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="http://fivehappylinks.com" rel="canonical">
+    <link href="https://fivehappylinks.com" rel="canonical">
 
-    <meta content="http://fivehappylinks.com" property="og:url">
+    <meta content="https://fivehappylinks.com" property="og:url">
     <meta content="website" property="og:type">
     <meta content="Five Happy Links" property="og:title">
     <meta content="A weekly digest of happy links to make you smile and feel good" property="og:description">
-    <meta content="http://fivehappylinks.com/img/social.png" property="og:image">
+    <meta content="https://fivehappylinks.com/img/social.png" property="og:image">
     <meta content="1200" property="og:image:width">
     <meta content="630" property="og:image:height">
     <!-- twitter -->
@@ -21,7 +21,7 @@
     <meta name="twitter:creator" content="@fivehappylinks">
     <meta name="twitter:title" content="Five Happy Links">
     <meta name="twitter:description" content="A weekly digest of happy links to make you smile and feel good">
-    <meta name="twitter:image" content="http://fivehappylinks.com/img/social.png">
+    <meta name="twitter:image" content="https://fivehappylinks.com/img/social.png">
 
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -55,7 +55,7 @@
 
                    <div class="col-2 col-3-sm col-12-l">
                        <div class="logo">
-                           <a href="/" title="Five Happy Links Home Page"><img class="rotate" src="img/logo.png" onmouseover="this.src='img/logo-hover.png';" onmouseout="this.src='img/logo.png';" alt="Five Happy Links Logo"></a>
+                           <a href="./" title="Five Happy Links Home Page"><img class="rotate" src="img/logo.png" onmouseover="this.src='img/logo-hover.png';" onmouseout="this.src='img/logo.png';" alt="Five Happy Links Logo"></a>
 
                        </div>
                    </div>
@@ -75,7 +75,7 @@
 
                         <div class="link-header row">
                             <div class="col-12">
-                                <p><a href="/" title="Return to the home page">&larr; Five Happy Links</a> — About</p>
+                                <p><a href="./" title="Return to the home page">&larr; Five Happy Links</a> — About</p>
                             </div>
 		                    
                         </div>
@@ -118,7 +118,7 @@
 						                                <!-- footer -->
 						                                <div class="footer row">
 						                                    <div class="col-12">
-						                                        <small>&copy; <?php $year = date("Y");echo $year; ?> — Five Happy Links 🖐 — <a href="about.php" title="About Five Happy Links">About</a></small>
+						                                        <small>&copy; <span id="year"></span> — Five Happy Links 🖐 — <a href="about.html" title="About Five Happy Links">About</a></small>
 										
 										
 										
@@ -157,6 +157,7 @@
 						            window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
 						        </script>
 						        <script src="js/plugins.js"></script>
+						        <script src="js/render.js"></script>
 						        <!--<script src="js/main.js"></script>-->
 						        <!-- twitter -->
 						        <script>
