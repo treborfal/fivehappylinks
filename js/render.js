@@ -18,9 +18,9 @@
         }
     }
 
-    function createLinkRow(link, index, arrowClass) {
+    function createLinkRow(link, index, arrowClass, rowClass) {
         var row = document.createElement('div');
-        row.className = 'happy-link row';
+        row.className = rowClass || 'happy-link row';
 
         var numberCol = document.createElement('div');
         numberCol.className = 'col-1 col-1-sm';
@@ -182,7 +182,7 @@
                     previousRow.className = 'previous-link row';
 
                     week.fiveLinks.forEach(function (link, linkIndex) {
-                        previousRow.appendChild(createLinkRow(link, linkIndex + 1, 'textalign-right'));
+                        previousRow.appendChild(createLinkRow(link, linkIndex + 1, 'textalign-right', 'row'));
                     });
 
                     archiveContainer.appendChild(previousRow);
