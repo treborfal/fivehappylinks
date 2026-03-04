@@ -6,13 +6,13 @@
     <meta name="description" content="A weekly digest of happy links to make you smile and feel good">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="http://fivehappylinks.com" rel="canonical">
+    <link href="https://fivehappylinks.com" rel="canonical">
 
-    <meta content="http://fivehappylinks.com" property="og:url">
+    <meta content="https://fivehappylinks.com" property="og:url">
     <meta content="website" property="og:type">
     <meta content="Five Happy Links" property="og:title">
     <meta content="A weekly digest of happy links to make you smile and feel good" property="og:description">
-    <meta content="http://fivehappylinks.com/img/social.png" property="og:image">
+    <meta content="https://fivehappylinks.com/img/social.png" property="og:image">
     <meta content="1200" property="og:image:width">
     <meta content="630" property="og:image:height">
     <!-- twitter -->
@@ -21,7 +21,7 @@
     <meta name="twitter:creator" content="@fivehappylinks">
     <meta name="twitter:title" content="Five Happy Links">
     <meta name="twitter:description" content="A weekly digest of happy links to make you smile and feel good">
-    <meta name="twitter:image" content="http://fivehappylinks.com/img/social.png">
+    <meta name="twitter:image" content="https://fivehappylinks.com/img/social.png">
 
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -55,7 +55,7 @@
 
                     <div class="col-2 col-3-sm col-12-l">
                         <div class="logo">
-                            <a href="/" title="Five Happy Links Home Page"><img class="rotate" src="img/logo.png" onmouseover="this.src='img/logo-hover.png';" onmouseout="this.src='img/logo.png';" alt="Five Happy Links Logo"></a>
+                            <a href="./" title="Five Happy Links Home Page"><img class="rotate" src="img/logo.png" onmouseover="this.src='img/logo-hover.png';" onmouseout="this.src='img/logo.png';" alt="Five Happy Links Logo"></a>
 
                         </div>
                     </div>
@@ -71,114 +71,29 @@
             </div>	
         
 
-
-
-                <?php
-				    $url = 'data/links.json'; // path to your JSON file
-				    $data = file_get_contents($url); // put the contents of the file into a variable
-				    $obj = json_decode($data); // decode the JSON feed
-					$ref = '?ref=fivehappylinks.com';
-					$issueNumber = count($obj->archiveLinks);
-				    ?>
-					
-					
             <div class="col-9-l">
 
                 <div class="link-header row">
                     <div class="col-9 col-9-sm">
-                        <p>Five happy links from 2020 <span class='newtag rounded hidden-sm'><a class='nobg' href="/" title="Randomise happy links">Randomise</a></span></p>
+                        <p>Five happy links from 2020 <span class='newtag rounded hidden-sm'><a class='nobg' href="./" title="Randomise happy links">Randomise</a></span></p>
                     </div>
 					
                     <div class="col-3 col-3-sm textalign-right">
                         <p>
-                           <a href="2020.php" title="See all happy links from 2020">See all</a>
+                           <a href="2020.html" title="See all happy links from 2020">See all</a>
                         </p>
                     </div>
                     
                 </div>
 
-                
-               
 					<!-- Random 2020 5 Happy links -->
-                    <?php $count=1;foreach ($obj->archiveLinks[rand(0,40)]->fiveLinks as $happyLink) : ?>
-
-                        <div class="happy-link row">
-                            <div class="col-1 col-1-sm">
-                                <p class="link-number">
-                                    <?php echo $count++ ?>
-                                </p>
-                            </div>
-                            <div class="col-10 col-11-sm">
-                                <p class="link-title"><a href="<?php echo $happyLink->linkURL; ?><?php echo $ref ?>" target="_blank"><?php echo $happyLink->linkTitle; ?></a></p>
-                                <p class="link-source">
-                                    <?php echo $happyLink->linkSource; ?>
-								</p>
-                            </div>
-                            <div class="col-1 hidden-sm">
-                                <p class="link-arrow textalign-right move"><a href="<?php echo $happyLink->linkURL; ?><?php echo $ref ?>" title="<?php echo $happyLink->linkTitle; ?>" target="_blank">&rarr;</a></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                    <div id="happy-links"></div>
                     <!-- / 5 Happy links -->
-							
-							
-									
-	               
-		  				  <?php
 
-		  	   				   $jsondata = file_get_contents("data/secondaryLinks.json");
-		  	   				   $json = json_decode($jsondata, true);
-				   
-		  	   				   $watch = $json['tvLinks'][array_rand($json['tvLinks'])];
-		  					   $eat = $json['foodLinks'][array_rand($json['foodLinks'])];
-		  					   $listen = $json['musicLinks'][array_rand($json['musicLinks'])];
-
-		  	   				   ?> 
-						   
-						   
-						   
-						   
-		  								<!-- Featured -->
-		  		                        <div class="happy-link row">
-		                             
-									 
-		  									 <!-- col 1 -->
-		  		                            <div class="col-4 feature">
-		  										<p class="tag text-highlight">Watch</p>
-										
-		  		                                <p class="feature-title"><a href="<?php echo $watch['linkURL']; ?>" target="_blank"><?php echo $watch['linkTitle']; ?> &rarr;</a></p>
-		  		                                <p class="link-source">
-		  		                                    <?php echo $watch['linkSource']; ?>
-		  										</p>
-		  		                            </div>
-									
-		  									 <!-- col 2 -->
-		  		                            <div class="col-4 feature">
-		  										<p class="tag text-highlight">Eat</p>
-		  	                                <p class="feature-title"><a href="<?php echo $eat['linkURL']; ?>" target="_blank"><?php echo $eat['linkTitle']; ?> &rarr;</a></p>
-		  	                                <p class="link-source">
-		  	                                    <?php echo $eat['linkSource']; ?>
-		  									</p>
-		  		                            </div>
-									
-		  									 <!-- col 3 -->
-		  		                            <div class="col-4 feature">
-		  										<p class="tag text-highlight">Listen</p>
-		  	                                <p class="feature-title"><a href="<?php echo $listen['linkURL']; ?>" target="_blank"><?php echo $listen['linkTitle']; ?> &rarr;</a></p>
-		  	                                <p class="link-source">
-		  	                                    <?php echo $listen['linkSource']; ?>
-		  									</p>
-		  		                            </div>
-									
-									
-		  									<div class="row">
-		  										<div class="col-12">
-		  											<p class="border"><a href="2020.php">See all happy links from 2020 &rarr;</a></p>
-		  										</div>
-		  									</div>
-									
-		  		                        </div>
-		  		                        <!-- / Featured -->
+								<!-- Featured -->
+								<div class="happy-link row" id="featured-links">
+								</div>
+								<!-- / Featured -->
 					
 									
 
@@ -186,7 +101,7 @@
                                 <!-- footer -->
                                 <div class="footer row">
                                     <div class="col-12">
-                                        <small>&copy; <?php $year = date("Y");echo $year; ?> — Five Happy Links 🖐 — <a href="about.php" title="About Five Happy Links">About</a></small>
+                                        <small>&copy; <span id="year"></span> — Five Happy Links 🖐 — <a href="about.html" title="About Five Happy Links">About</a></small>
 										
 										
 										
@@ -225,6 +140,7 @@
             window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
         </script>
         <script src="js/plugins.js"></script>
+        <script src="js/render.js"></script>
         <!--<script src="js/main.js"></script>-->
         <!-- twitter -->
         <script>
