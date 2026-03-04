@@ -1,0 +1,227 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <title>Five Happy Links — Year 2020 Round Up</title>
+    <meta name="description" content="A weekly digest of happy links to make you smile and feel good">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="http://fivehappylinks.com" rel="canonical">
+
+    <meta content="http://fivehappylinks.com" property="og:url">
+    <meta content="website" property="og:type">
+    <meta content="Five Happy Links" property="og:title">
+    <meta content="A weekly digest of happy links to make you smile and feel good" property="og:description">
+    <meta content="http://fivehappylinks.com/img/social.png" property="og:image">
+    <meta content="1200" property="og:image:width">
+    <meta content="630" property="og:image:height">
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@fivehappylinks">
+    <meta name="twitter:creator" content="@fivehappylinks">
+    <meta name="twitter:title" content="Five Happy Links">
+    <meta name="twitter:description" content="A weekly digest of happy links to make you smile and feel good">
+    <meta name="twitter:image" content="http://fivehappylinks.com/img/social.png">
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#e1f8fc">
+    <meta name="theme-color" content="#e1f8fc">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+					
+    <div class="container">
+        <!-- Main Content Row -->
+        <div class="row">
+
+            <div class="col-3-l">
+
+                <div class="row">
+
+                    <div class="col-2 col-3-sm col-12-l">
+                        <div class="logo">
+                            <a href="/" title="Five Happy Links Home Page"><img class="rotate" src="img/logo.png" onmouseover="this.src='img/logo-hover.png';" onmouseout="this.src='img/logo.png';" alt="Five Happy Links Logo"></a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-9-sm col-12-l">
+
+                        <p>A weekly digest of happy links to make you smile and feel good.
+                            <br>— Follow <a href="https://twitter.com/fivehappylinks" target="_blank" title="Follow Five Happy Links on Twitter">@fivehappylinks</a></p>
+
+                    </div>
+
+                </div>
+            </div>
+        
+
+
+
+                <?php
+				    $url = 'data/links.json'; // path to your JSON file
+				    $data = file_get_contents($url); // put the contents of the file into a variable
+				    $obj = json_decode($data); // decode the JSON feed
+				    ?>
+					
+					
+            <div class="col-9-l">
+
+                <div class="link-header row">
+                    <div class="col-6 col-9-sm">
+                        <p>All happy links from 2020</p>
+                    </div>
+                    <div class="col-6 col-3-sm textalign-right">
+                        <p>
+                           <a href="about.php" title="About five happy links">About</a>
+                        </p>
+                    </div>
+                </div>
+				
+				
+												
+                 <!-- reverse feed -->
+					 <?php // foreach (array_reverse($obj->archiveLinks) as $weekDisplay) : ?>
+					
+					
+					
+					 
+					<?php 
+
+					$totalIssueNumber = count($obj->archiveLinks);
+					$issueNumber = 1;
+					$i = 0;
+					foreach (array_reverse($obj->archiveLinks) as $weekDisplay) : ?>
+								<div class="row">
+									<div class="col-12 last-week">
+
+										<p class="tag text-highlight">Issue <?php echo $issueNumber++ ?> of <?php echo $totalIssueNumber;  ?> — <?php echo $weekDisplay->date; ?>, <?php echo $obj->year; ?>
+										
+										</p>
+									</div>
+								</div>
+								
+								<!-- Last week's 5 Happy links -->
+								<div class="previous-link row">
+			                    <?php $count=1;foreach ($weekDisplay->fiveLinks as $happyLink) : ?>
+			                        <div class="row">
+			                            <div class="col-1 col-1-sm">
+			                                <p class="link-number">
+			                                    <?php echo $count++ ?>
+			                                </p>
+			                            </div>
+			                            <div class="col-10 col-11-sm">
+			                                <p class="link-title"><a href="<?php echo $happyLink->linkURL; ?>" target="_blank"><?php echo $happyLink->linkTitle; ?></a></p>
+			                                <p class="link-source">
+			                                    <?php echo $happyLink->linkSource; ?><!-- — <a href="https://twitter.com/intent/tweet?url=<?php echo $happyLink->linkURL; ?>&via=fivehappylinks&text=<?php echo $happyLink->linkTitle; ?>" title="Share happy link on Twitter">Share</a>-->
+											</p>
+			                            </div>
+			                            <div class="col-1 hidden-sm">
+			                                <p class="link-arrow textalign-right"><a href="<?php echo $happyLink->linkURL; ?>" title="<?php echo $happyLink->linkTitle; ?>" target="_blank">&rarr;</a></p>
+			                            </div>
+			                        </div>
+			                    <?php endforeach; ?>
+						
+						
+								
+								
+						</div>
+						
+						
+			                 <?php endforeach; ?> 
+							 
+							   <!-- / Last week's 5 Happy links -->	
+							   
+						
+									
+
+
+                                <!-- footer -->
+                                <div class="footer row">
+                                    <div class="col-12">
+                                        <small>&copy; <?php $year = date("Y");echo $year; ?> — Five Happy Links 🖐 — <a href="about.php" title="About Five Happy Links">About</a></small>
+										
+										
+										
+										
+										
+                                    </div>
+									
+								
+									
+                                </div>
+                                <!-- / footer -->
+								
+								
+								
+
+                            </div>
+                            <!-- / Main Content Row -->
+         
+  		
+		
+ 		
+        </div>
+        <!-- end container -->
+ 		
+	<!-- smiley face -->
+	<div class="face">
+		<img class="move" src="img/face.png" width="100" height="50" alt="Five Happy Links Logo">
+	</div>
+	<!-- / smiley face -->
+
+        <!-- Scripts -->
+
+        <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
+        </script>
+        <script src="js/plugins.js"></script>
+        <!--<script src="js/main.js"></script>-->
+        <!-- twitter -->
+        <script>
+            ! function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0],
+                    p = /^http:/.test(d.location) ? 'http' : 'https';
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + '://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, 'script', 'twitter-wjs');
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-546243-7"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-546243-7');
+        </script>
+
+        <!-- end Scripts -->
+
+</body>
+
+</html>

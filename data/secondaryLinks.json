@@ -1,0 +1,102 @@
+{
+   "tvLinks":[
+ 	  
+       {
+          "linkTitle":"An uplifting show dedicated entirely to good news, created and hosted by actor John Krasinski",
+          "linkURL":"https://www.youtube.com/channel/UCOe_y6KKvS3PdIfb9q9pGug/featured",
+          "linkSource":"somegoodnews.com"
+       },
+       {
+          "linkTitle":"Everybody Loves Raymond creator Phil Rosenthal travels the globe to take in the local cuisine and culture of various cities",
+          "linkURL":"https://www.netflix.com/gb/title/80146601",
+          "linkSource":"netflix.com"
+       },
+  	  {
+           "linkTitle":"Reunited Apart by Josh Gad, a web series where the cast and filmmakers of movies reunite virtually online",
+           "linkURL":"https://www.youtube.com/channel/UCMCd3u3uQ0DtlDfVU0GlKpQ",
+           "linkSource":"youtube.com"
+        },
+    	  {
+             "linkTitle":"Create Together #WithMe is a series about making art and community out of uncertain times, hosted by Joseph Gordon-Levitt",
+             "linkURL":"https://www.youtube.com/playlist?list=PLB0rl-bjxkI6gwIOA6paIZlOjp0f42zOq",
+             "linkSource":"youtube.com"
+          }
+   ],
+   "foodLinks":[
+ 	  
+       {
+          "linkTitle":"Make a homemade version of your favourite takeaway with these tasty fakeaway recipes",
+          "linkURL":"https://www.bbcgoodfood.com/howto/guide/ultimate-made-over-friday-night-takeaways",
+          "linkSource":"bbcgoodfood.com"
+       },
+       {
+          "linkTitle":"These easy cakes and bakes transform basic storecupboard into something special, including brownies, scones, flatbreads and more",
+          "linkURL":"https://www.bbcgoodfood.com/recipes/collection/storecupboard-baking",
+          "linkSource":"bbcgoodfood.com"
+       },
+  	  {
+           "linkTitle":"Packed with nutrients to help you feel more focused, refreshed and alert, these brain-boosting recipes are what you need",
+           "linkURL":"https://www.bbcgoodfood.com/recipes/collection/brain-boosting-recipes",
+           "linkSource":"bbcgoodfood.com"
+        },
+    	  {
+             "linkTitle":"Tuck into healthy recipes that you can make in under 30 minutes, leaving you feeling nourished",
+             "linkURL":"https://www.bbcgoodfood.com/recipes/collection/quick-and-healthy",
+             "linkSource":"bbcgoodfood.com"
+          },
+	  	  {
+	           "linkTitle":"Brilliant burger recipes, from juicy beef patties, to miso, chicken, turkey and veggie burgers",
+	           "linkURL":"https://www.bbcgoodfood.com/recipes/collection/burger",
+	           "linkSource":"bbcgoodfood.com"
+	        },
+  	  	  {
+  	           "linkTitle":"Perfect pasta recipes for midweek meals, from classic spaghetti Bolognese to lasagne and linguine",
+  	           "linkURL":"https://www.bbcgoodfood.com/recipes/collection/pasta",
+  	           "linkSource":"bbcgoodfood.com"
+  	        }
+		
+   ],
+   "musicLinks":[
+       {
+          "linkTitle":"Fake Doctors, Real Friends — a weekly comedy podcast where Scrubs co-stars relive the hit TV show",
+          "linkURL":"https://www.iheart.com/podcast/1119-fake-doctors-real-friends-60367049/",
+          "linkSource":"iheart.com"
+       },
+	   {
+		   "linkTitle":"Good People, Good Music: Great songs from great people. Enjoy music from artists you can believe in",
+          "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DWZy0j22jjWNA?si=fY1xw7peTN67POUHAYDSag",
+          "linkSource":"Spotify"
+	  },
+       {
+          "linkTitle":"Happy Lah — Feel good songs for the best kind of day",
+          "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DWZdLqpoFOt65?si=dnBtGc_WQ9WOm0fTmdFk4g",
+          "linkSource":"Spotify"
+       },
+       {
+          "linkTitle":"Happy Pop — Embrace those happy vibes with these feel good hits",
+          "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DX1H4LbvY4OJi?si=M76cE0MlQcWyriYiTXXUqA",
+          "linkSource":"Spotify"
+       },
+  	  {
+           "linkTitle":"Feelin' Good — Feel good with this positively timeless playlist",
+           "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DX9XIFQuFvzM4?si=hKrHlXu4RnOnXueKQF2q4A",
+           "linkSource":"Spotify"
+        },
+    	  {
+             "linkTitle":"Happy Throwbacks — Throwbacks to make you feel good",
+             "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DWVOMXLzSabIM?si=p418FLr0Q-ajaZBpzuYYVg",
+             "linkSource":"Spotify"
+          },
+	  	  {
+	           "linkTitle":"Happy Days — Relive the good ol' days with these cheery 50s, 60s and 70s songs",
+	           "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DX84kJlLdo9vT?si=bjNVbut2TYuIpCWSBgblzg",
+	           "linkSource":"Spotify"
+	        },
+  	  	  {
+  	           "linkTitle":"Happy Folk — Brighten your day with a folksy mix of mood boosters",
+  	           "linkURL":"https://open.spotify.com/playlist/37i9dQZF1DWSkMjlBZAZ07?si=LlzVV03uSB2eKBb4mbj7mw",
+  	           "linkSource":"Spotify"
+  	        }
+   ]
+}
+   
