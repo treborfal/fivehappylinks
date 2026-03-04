@@ -1,5 +1,9 @@
 (function () {
     var REF_PARAM = 'ref=fivehappylinks.com';
+    var linksDataCache = null;
+    var secondaryDataCache = null;
+    var linksDataPromise = null;
+    var secondaryDataPromise = null;
 
     function addRef(url) {
         if (typeof url !== 'string' || !url) {
@@ -96,6 +100,168 @@
         return items[Math.floor(Math.random() * items.length)];
     }
 
+    function clearContainer(container) {
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+    }
+
+    function loadLinksData() {
+        if (linksDataCache) {
+            return Promise.resolve(linksDataCache);
+        }
+        if (!linksDataPromise) {
+            linksDataPromise = fetch('./data/links.json')
+                .then(function (response) { return response.json(); })
+                .then(function (data) {
+                    linksDataCache = data;
+                    return data;
+                });
+        }
+        return linksDataPromise;
+    }
+
+    function loadSecondaryData() {
+        if (secondaryDataCache) {
+            return Promise.resolve(secondaryDataCache);
+        }
+        if (!secondaryDataPromise) {
+            secondaryDataPromise = fetch('./data/secondaryLinks.json')
+                .then(function (response) { return response.json(); })
+                .then(function (data) {
+                    secondaryDataCache = data;
+                    return data;
+                });
+        }
+        return secondaryDataPromise;
+    }
+
+    function loadIndexData() {
+        return Promise.all([loadLinksData(), loadSecondaryData()]);
+    }
+
+    function buildHappyLinksFragment(linksData) {
+        var fragment = document.createDocumentFragment();
+        var archive = linksData.archiveLinks || [];
+
+        if (archive.length) {
+            var issue = archive[Math.floor(Math.random() * archive.length)];
+            issue.fiveLinks.forEach(function (link, index) {
+                fragment.appendChild(createLinkRow(link, index + 1, 'textalign-right move'));
+            });
+        }
+
+        return fragment;
+    }
+
+    function buildFeaturedFragment(secondaryData) {
+        var fragment = document.createDocumentFragment();
+        var watch = randomItem(secondaryData.tvLinks || []);
+        var eat = randomItem(secondaryData.foodLinks || []);
+        var listen = randomItem(secondaryData.musicLinks || []);
+
+        if (watch) {
+            fragment.appendChild(createFeatureColumn('Watch', watch));
+        }
+        if (eat) {
+            fragment.appendChild(createFeatureColumn('Eat', eat));
+        }
+        if (listen) {
+            fragment.appendChild(createFeatureColumn('Listen', listen));
+        }
+
+        var row = document.createElement('div');
+        row.className = 'row';
+        var col = document.createElement('div');
+        col.className = 'col-12';
+        var border = document.createElement('p');
+        border.className = 'border';
+        var link = document.createElement('a');
+        link.href = '2020.html';
+        link.innerHTML = 'See all happy links from 2020 &rarr;';
+        border.appendChild(link);
+        col.appendChild(border);
+        row.appendChild(col);
+        fragment.appendChild(row);
+
+        return fragment;
+    }
+
+    function swapWithTransition(happyLinksContainer, featuredContainer, happyFragment, featuredFragment) {
+        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            if (happyLinksContainer) {
+                clearContainer(happyLinksContainer);
+                happyLinksContainer.appendChild(happyFragment);
+            }
+            if (featuredContainer) {
+                clearContainer(featuredContainer);
+                featuredContainer.appendChild(featuredFragment);
+            }
+            return Promise.resolve();
+        }
+
+        var updatingContainers = [happyLinksContainer, featuredContainer].filter(Boolean);
+        updatingContainers.forEach(function (container) {
+            container.style.minHeight = container.offsetHeight + 'px';
+            container.classList.add('is-updating');
+        });
+
+        return new Promise(function (resolve) {
+            window.setTimeout(function () {
+                if (happyLinksContainer) {
+                    clearContainer(happyLinksContainer);
+                    happyLinksContainer.appendChild(happyFragment);
+                }
+                if (featuredContainer) {
+                    clearContainer(featuredContainer);
+                    featuredContainer.appendChild(featuredFragment);
+                }
+
+                window.setTimeout(function () {
+                    updatingContainers.forEach(function (container) {
+                        container.classList.remove('is-updating');
+                        container.style.minHeight = '';
+                    });
+                    resolve();
+                }, 150);
+            }, 150);
+        });
+    }
+
+    function randomiseIndexLinks() {
+        var happyLinksContainer = document.getElementById('happy-links');
+        var featuredContainer = document.getElementById('featured-links');
+
+        if (!happyLinksContainer && !featuredContainer) {
+            return Promise.resolve();
+        }
+
+        return loadIndexData().then(function (results) {
+            var linksData = results[0];
+            var secondaryData = results[1];
+            var happyFragment = buildHappyLinksFragment(linksData);
+            var featuredFragment = buildFeaturedFragment(secondaryData);
+
+            return swapWithTransition(happyLinksContainer, featuredContainer, happyFragment, featuredFragment);
+        }).catch(function () {
+            // Keep page usable even if JSON fetch fails.
+        });
+    }
+
+    function bindRandomiseLink() {
+        var links = document.querySelectorAll('a[href="./"], a[href="/"]');
+        Array.prototype.forEach.call(links, function (link) {
+            if (link.textContent && link.textContent.replace(/\s+/g, ' ').trim() === 'Randomise') {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    randomiseIndexLinks();
+                });
+            }
+        });
+    }
+
     function renderIndexPage() {
         var happyLinksContainer = document.getElementById('happy-links');
         var featuredContainer = document.getElementById('featured-links');
@@ -103,51 +269,18 @@
             return Promise.resolve();
         }
 
-        return Promise.all([
-            fetch('./data/links.json').then(function (response) { return response.json(); }),
-            fetch('./data/secondaryLinks.json').then(function (response) { return response.json(); })
-        ]).then(function (results) {
+        return loadIndexData().then(function (results) {
             var linksData = results[0];
             var secondaryData = results[1];
 
             if (happyLinksContainer) {
-                var archive = linksData.archiveLinks || [];
-                if (archive.length) {
-                    var issue = archive[Math.floor(Math.random() * archive.length)];
-                    issue.fiveLinks.forEach(function (link, index) {
-                        happyLinksContainer.appendChild(createLinkRow(link, index + 1, 'textalign-right move'));
-                    });
-                }
+                clearContainer(happyLinksContainer);
+                happyLinksContainer.appendChild(buildHappyLinksFragment(linksData));
             }
 
             if (featuredContainer) {
-                var watch = randomItem(secondaryData.tvLinks || []);
-                var eat = randomItem(secondaryData.foodLinks || []);
-                var listen = randomItem(secondaryData.musicLinks || []);
-
-                if (watch) {
-                    featuredContainer.appendChild(createFeatureColumn('Watch', watch));
-                }
-                if (eat) {
-                    featuredContainer.appendChild(createFeatureColumn('Eat', eat));
-                }
-                if (listen) {
-                    featuredContainer.appendChild(createFeatureColumn('Listen', listen));
-                }
-
-                var row = document.createElement('div');
-                row.className = 'row';
-                var col = document.createElement('div');
-                col.className = 'col-12';
-                var border = document.createElement('p');
-                border.className = 'border';
-                var link = document.createElement('a');
-                link.href = '2020.html';
-                link.innerHTML = 'See all happy links from 2020 &rarr;';
-                border.appendChild(link);
-                col.appendChild(border);
-                row.appendChild(col);
-                featuredContainer.appendChild(row);
+                clearContainer(featuredContainer);
+                featuredContainer.appendChild(buildFeaturedFragment(secondaryData));
             }
         }).catch(function () {
             // Keep page usable even if JSON fetch fails.
@@ -160,8 +293,7 @@
             return Promise.resolve();
         }
 
-        return fetch('./data/links.json')
-            .then(function (response) { return response.json(); })
+        return loadLinksData()
             .then(function (data) {
                 var archive = (data.archiveLinks || []).slice().reverse();
                 var totalIssueNumber = archive.length;
@@ -194,6 +326,7 @@
     }
 
     setYear();
+    bindRandomiseLink();
     renderIndexPage();
     renderArchivePage();
 })();
