@@ -129,6 +129,8 @@ a:hover {background-color:#fff900;color:#2E2B55;} /* yellow */
 		
 		.newtag a {background:none;text-decoration:none;color:#ffffff;}
 		.newtag a:hover {background:none;text-decoration:underline;}
+		.randomise-link {display:inline-flex;align-items:center;gap:4px;vertical-align:middle;}
+		.randomise-icon {display:block;width:12px;height:12px;flex-shrink:0;}
 	
 	p.tag {padding:2px 0px;display:inline-block;margin-bottom:10px;border-bottom:1px solid rgba(46, 43, 85, 1);}
 	p.border {padding:10px 20px;display:inline-block;margin-top:10px;margin-bottom:10px;border-radius:40px;border:1px solid rgba(46, 43, 85, .1);}
