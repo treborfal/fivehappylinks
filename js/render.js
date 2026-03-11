@@ -160,15 +160,20 @@
         var eat = randomItem(secondaryData.foodLinks || []);
         var listen = randomItem(secondaryData.musicLinks || []);
 
+        var featuresRow = document.createElement('div');
+        featuresRow.className = 'row';
+
         if (watch) {
-            fragment.appendChild(createFeatureColumn('Watch', watch));
+            featuresRow.appendChild(createFeatureColumn('Watch', watch));
         }
         if (eat) {
-            fragment.appendChild(createFeatureColumn('Eat', eat));
+            featuresRow.appendChild(createFeatureColumn('Eat', eat));
         }
         if (listen) {
-            fragment.appendChild(createFeatureColumn('Listen', listen));
+            featuresRow.appendChild(createFeatureColumn('Listen', listen));
         }
+
+        fragment.appendChild(featuresRow);
 
         var row = document.createElement('div');
         row.className = 'row';
